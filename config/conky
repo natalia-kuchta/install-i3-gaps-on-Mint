@@ -1,0 +1,73 @@
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+gap_x 25
+gap_y 85
+minimum_size 220 900
+maximum_width 220
+own_window true
+own_window_type override
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 150
+own_window_hints undecorate,above,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+alignment tl
+
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_shade_color black
+
+override_utf8_locale yes
+use_xft yes
+xftfont eurofurence light,Light
+xftalpha 1
+uppercase no
+
+default_color ffffff
+color1 DDDDDD
+color2 AAAAAA
+color3 888888
+color4 EF5A29
+
+
+TEXT
+${font Raleway:weight=Ultra-Light:size=56}${alignc}${time %H:%M}${font}
+
+${font eurofurence light,Light:size=17}${alignc}${time %A}, ${time %d %B}
+
+${offset 00}${font econ,Regular:size=22}A${font eurofurence light,Light:size=24}${alignr}Mint 19.04
+${font eurofurence light,Light:size=17}Ядро${alignr}${execi 360 uname -r | cut -c1-6}
+${font eurofurence light,Light:size=17}Работает${alignr}${uptime_short}
+
+${offset 00}${font econ,Regular:size=22}S${font eurofurence light,Light:size=24}${alignr} Температура
+${font eurofurence light,:size=17}Процессор${alignr}${alignr}${hwmon 1 temp 1}°C
+
+${offset 0}${font econ,Regular:size=19}W${font eurofurence light,Light:size=24} ${alignr}Нагрузка
+${font eurofurence light,Light:size=17}${color2}CPU ${color0}${alignr}${cpu cpu0}%
+${cpubar cpu0 3,}
+${font eurofurence light,Light:size=15}${top name 1} $alignr ${top cpu 1}%
+${font eurofurence light,Light:size=15}${top name 2} $alignr ${top cpu 2}%
+${font eurofurence light,Light:size=15}${top name 3} $alignr ${top cpu 3}%
+
+${font eurofurence light,Light:size=17}${color2}RAM ${color0}${alignr}${mem}
+${membar 3,}
+${font eurofurence light,Light:size=15}${top_mem name 1} $alignr ${top_mem mem_res 1}
+${font eurofurence light,Light:size=15}${top_mem name 2} $alignr ${top_mem mem_res 2}
+${font eurofurence light,Light:size=15}${top_mem name 3} $alignr ${top_mem mem_res 3}
+
+
+${if_running audacious}${offset 0}${font econ,Regular:size=22}i${font eurofurence light,Light:size=24} ${alignr}Audacious
+${font eurofurence light,Light:size=16}${scroll 34 1${exec audtool --current-song}}
+${exec audtool --current-song-bitrate-kbps} kbps | ${exec audtool --current-song-length} ${execbar expr 100 (* $(audtool --current-song-output-length-seconds) (/ $(audtool --current-song-length-seconds)}$endif
