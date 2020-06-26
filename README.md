@@ -16,6 +16,7 @@ I made a set of installation scripts for easy startup. I use fork i3-gaps instea
 * Variety
 * Flameshot
 * Conky
+* Dunst Notification 
 
 # Install
 

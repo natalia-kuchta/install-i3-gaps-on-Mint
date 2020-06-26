@@ -8,6 +8,8 @@ sudo apt-get install -y rofi
 #conky
 sudo apt-get install -y conky-all
 
+#dunst
+sudo apt install -y dunst
 # change wallpapers with feh and variety
 sudo apt-get install -y feh
 
