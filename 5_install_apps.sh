@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 #install APPS
 #VIM
 echo "installing VIM..."
