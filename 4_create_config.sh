@@ -1,4 +1,4 @@
-# !/bin/bash/
+#!/bin/bash/
 
 if ! [ -d  ~/.local/share/fonts]; then
         mkdir ~/.local/share/fonts

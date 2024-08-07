@@ -1,4 +1,7 @@
-# !/bin/bash
+#!/bin/bash
+
+REPO_DIR=`dirname -- "$( readlink -f -- "$0"; )"`
+
 #flameshot
 sudo apt install flameshot
 
@@ -12,9 +15,6 @@ sudo apt-get install -y conky-all
 sudo apt install -y dunst
 # change wallpapers with feh and variety
 sudo apt-get install -y feh
-
-# transparency of non active window
-#sudo apt-get install -y compton
 
 # notify demon
 sudo apt-get install -y notify-osd
@@ -45,29 +45,42 @@ sudo apt install -y i3status
 sudo apt install -y suckless-tools
 
 ##############################
-# INSTALL COMPTON TRYON144 
+# INSTALL PICOM
 ##############################
-sudo apt install libx11-dev xsltproc libxml2-dev docbook-xsl libgl1-mesa-dev libxcomposite-dev libxdamage-dev libxfixes-dev libxext-dev libxrender-dev libxrandr-dev libxinerama-dev pkg-config make x11proto-core-dev x11-utils libpcre3 libpcre3-dev libconfig-dev libdrm-dev libgl1-mesa-glx libdbus-1-dev asciidoc -y
+sudo apt install libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libepoxy-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev meson ninja-build uthash-dev -y
 
-git clone https://github.com/tryone144/compton.git && cd $dir/compton
+rm -rf /tmp/picom
+git clone https://github.com/yshui/picom /tmp/picom && cd /tmp/picom || exit 1
 
-sudo make
-sudo make install
+meson setup --buildtype=release build
+ninja -C build
+sudo ninja -C build install
+cd /
+rm -rf /tmp/picom
+
 ##############################
 # INSTALL POLYBAR
 ##############################
 
-git clone https://github.com/jaagr/polybar.git
+sudo apt install libuv1-dev
+pip install -U sphinx
 
-cd polybar
+rm -rf /tmp/polybar
+git clone https://github.com/polybar/polybar /tmp/polybar
+
+cd /tmp/polybar || exit 1
 
 ./build.sh
-
+cd /
+rm -rf /tmp/polybar
 
 ##############################
-# INSTALL ALTERNATING LAYOUT 
+# INSTALL ALTERNATING LAYOUT
 ##############################
 sudo apt-get install python3-pip
 pip3 install i3ipc
-cd config/
+
+cd "${REPO_DIR}/config/" || exit 1
+rm -rf "${REPO_DIR}/config/i3-alternating-layout"
 git clone https://github.com/olemartinorg/i3-alternating-layout
+rm -rf "${REPO_DIR}/config/i3-alternating-layout/.git"
