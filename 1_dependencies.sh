@@ -27,7 +27,7 @@ sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-u
 
 sudo apt-get install -y libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
 
-sudo apt-get install cmake cmake-data libcairo2-dev  libxcb-ewmh-dev  libxcb-image0-dev  pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-ewmh2 i3lock-fancy
+sudo apt-get install cmake cmake-data libcairo2-dev  libxcb-ewmh-dev  libxcb-image0-dev  pkg-config python3-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-ewmh2 i3lock-fancy
 
 echo "##################################"
 echo "INSTALL XCB"
